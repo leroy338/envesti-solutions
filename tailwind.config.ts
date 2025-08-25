@@ -51,6 +51,19 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        green: {
+          50: '#f7faf5',
+          100: '#eef5e6',
+          200: '#dde9cc',
+          300: '#c4d9a3',
+          400: '#a3c666',
+          500: '#68a000', // Your custom green
+          600: '#5a8a00',
+          700: '#4a7200',
+          800: '#3d5e00',
+          900: '#324d00',
+          950: '#1a2800',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

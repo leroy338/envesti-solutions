@@ -51,11 +51,23 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname !== "/" &&
     !user &&
     !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/auth")
+    !request.nextUrl.pathname.startsWith("/auth") &&
+    !request.nextUrl.pathname.startsWith("/schedule-meeting") &&
+    !request.nextUrl.pathname.startsWith("/about") &&
+    !request.nextUrl.pathname.startsWith("/services") &&
+    !request.nextUrl.pathname.startsWith("/(solutions)") &&
+    !request.nextUrl.pathname.startsWith("/in-person") &&
+    !request.nextUrl.pathname.startsWith("/online-training") &&
+    !request.nextUrl.pathname.startsWith("/instruction-design") &&
+    !request.nextUrl.pathname.startsWith("/(marketing)") &&
+    !request.nextUrl.pathname.startsWith("/(company)") &&
+    !request.nextUrl.pathname.startsWith("/(shop)") &&
+    !request.nextUrl.pathname.startsWith("/courses") &&
+    !request.nextUrl.pathname.startsWith("/careers")
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone();
-    url.pathname = "/auth/login";
+            url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
