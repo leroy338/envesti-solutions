@@ -1,8 +1,15 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
-// This helps Vercel understand the route structure during build
+// Force this route to be dynamic and avoid static generation issues
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+// Prevent static generation entirely
+export const generateStaticParams = async () => [];
+// Mark as server component only
+export const runtime = 'nodejs';
+// Prevent client-side rendering entirely
+export const preferredRegion = 'auto';
 
 export default async function ProtectedPage() {
   try {
