@@ -1,13 +1,17 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function ProtectedPage() {
-  const supabase = await createClient();
+// This helps Vercel understand the route structure during build
+export const dynamic = 'force-dynamic';
 
-  const { data, error } = await supabase.auth.getClaims();
-  if (error || !data?.claims) {
-    redirect("/login");
-  }
+export default async function ProtectedPage() {
+  try {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase.auth.getClaims();
+    if (error || !data?.claims) {
+      redirect("/login");
+    }
 
   return (
     <div className="flex-1 w-full flex flex-col items-center justify-center min-h-[60vh]">
@@ -41,4 +45,8 @@ export default async function ProtectedPage() {
       </div>
     </div>
   );
+  } catch {
+    // If there's an error during authentication, redirect to login
+    redirect("/login");
+  }
 }
