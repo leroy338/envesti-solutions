@@ -28,20 +28,21 @@ export function HomeHeader({
       <Image
         src={backgroundImage}
         alt="Header Background"
-        fill
-        className="object-cover object-center"
+        width={1920}
+        height={1080}
+        className="w-full h-full object-cover object-center"
         priority
       />
       
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/60" />
       
       {/* Content Container */}
-      <div className="relative z-10 h-full flex items-center">
+      <div className="absolute inset-0 z-20 flex items-center w-full">
         <div className="max-w-7xl mx-auto px-5 w-full">
           <div className="max-w-2xl">
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
               {title.split('Envesti Solutions').map((part, index, array) => (
                 <span key={index}>
                   {part}
@@ -53,7 +54,7 @@ export function HomeHeader({
             </h1>
             
             {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl text-white mb-8 leading-relaxed drop-shadow-lg">
               {subtitle}
             </p>
             
@@ -63,7 +64,7 @@ export function HomeHeader({
                 asChild 
                 variant={button.variant || "default"}
                 size="lg"
-                className="text-lg px-8 py-3"
+                className="text-lg px-8 py-3 shadow-lg"
               >
                 <Link href={button.href}>
                   {button.text}

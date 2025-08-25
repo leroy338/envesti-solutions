@@ -21,7 +21,7 @@ export default function AboutUsPage() {
           variant: "secondary",
           size: "lg"
         }}
-        image="/images/about-hero.jpg"
+        image="/images/in-person-hero.jpg"
         imageAlt="Envesti Solutions team"
         imagePosition="right"
       />

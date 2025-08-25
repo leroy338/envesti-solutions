@@ -54,8 +54,9 @@ export function CardBanner({ header, subheader, cards, className }: CardBannerPr
                   <Image
                     src={card.image}
                     alt={card.title}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-300"
+                    width={400}
+                    height={225}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 {card.imageCaption && (

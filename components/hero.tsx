@@ -109,8 +109,9 @@ export function Hero({
           <Image
             src={backgroundImage}
             alt="Background"
-            fill
-            className="object-cover"
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover"
             priority
           />
           <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />

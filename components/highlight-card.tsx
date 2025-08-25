@@ -96,12 +96,13 @@ export function HighlightCard({ header, subheader, highlights, className }: High
           {/* Right Column - Dynamic Card */}
           <div className="sticky top-8 max-w-md xl:max-w-lg 2xl:max-w-xl mx-auto lg:mx-0">
             <Card className="overflow-hidden shadow-lg">
-              <div className="aspect-video overflow-hidden relative">
+              <div className="aspect-video overflow-hidden">
                 <Image
                   src={selectedHighlight.image}
                   alt={selectedHighlight.imageAlt || selectedHighlight.text}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  width={400}
+                  height={225}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <CardHeader className="pb-4">
@@ -173,12 +174,13 @@ export function HighlightCard({ header, subheader, highlights, className }: High
 
           {/* Mobile Card */}
           <Card className="overflow-hidden shadow-lg">
-            <div className="aspect-video overflow-hidden relative">
+            <div className="aspect-video overflow-hidden">
               <Image
                 src={selectedHighlight.image}
                 alt={selectedHighlight.imageAlt || selectedHighlight.text}
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-300"
+                width={400}
+                height={225}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
             <CardHeader className="pb-4">

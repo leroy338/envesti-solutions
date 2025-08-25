@@ -81,7 +81,7 @@ export function NavMenu() {
       submenu: [
         { 
           label: "Learning Management System", 
-          href: "/resources/lms",
+          href: "/",
           description: "Advanced LMS platform for managing, tracking, and delivering training programs efficiently.",
           icon: <Monitor size={20} className="text-primary" />
         },
@@ -93,19 +93,19 @@ export function NavMenu() {
         },
         { 
           label: "FAQs", 
-          href: "/resources/faqs",
+          href: "/",
           description: "Frequently asked questions about our services, training programs, and learning solutions.",
           icon: <HelpCircle size={20} className="text-primary" />
         },
         { 
           label: "Company EEO Policies", 
-          href: "/resources/eeo-policies",
+          href: "/",
           description: "Our commitment to equal employment opportunity and inclusive workplace practices.",
           icon: <Shield size={20} className="text-primary" />
         },
         { 
           label: "Whitepaper", 
-          href: "/resources/whitepaper",
+          href: "/",
           description: "In-depth research and analysis on learning and development best practices.",
           icon: <FileSpreadsheet size={20} className="text-primary" />
         }

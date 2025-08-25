@@ -205,12 +205,13 @@ export default function CoursesPage() {
               <Card key={course.id} className="h-full flex flex-col hover:shadow-lg transition-all duration-300 group">
                 {/* Course Image */}
                 <div className="relative">
-                                  <div className="aspect-video overflow-hidden rounded-t-lg relative">
+                                  <div className="aspect-video overflow-hidden rounded-t-lg">
                   <Image
                     src={course.image}
                     alt={course.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    width={400}
+                    height={225}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                   {course.featured && (
