@@ -2,6 +2,7 @@ import React from "react";
 import { Button, ButtonProps } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export interface CardItem {
   image: string;
@@ -50,10 +51,11 @@ export function CardBanner({ header, subheader, cards, className }: CardBannerPr
             <Card key={index} className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
               <CardHeader className="pb-4">
                 <div className="aspect-video overflow-hidden rounded-lg mb-4">
-                  <img
+                  <Image
                     src={card.image}
                     alt={card.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 {card.imageCaption && (

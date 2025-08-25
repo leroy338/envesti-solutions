@@ -3,6 +3,7 @@ import { Button, ButtonProps } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { CheckCircle } from "lucide-react";
+import Image from "next/image";
 
 export interface HighlightItem {
   text: string;
@@ -95,11 +96,12 @@ export function HighlightCard({ header, subheader, highlights, className }: High
           {/* Right Column - Dynamic Card */}
           <div className="sticky top-8 max-w-md xl:max-w-lg 2xl:max-w-xl mx-auto lg:mx-0">
             <Card className="overflow-hidden shadow-lg">
-              <div className="aspect-video overflow-hidden">
-                <img
+              <div className="aspect-video overflow-hidden relative">
+                <Image
                   src={selectedHighlight.image}
                   alt={selectedHighlight.imageAlt || selectedHighlight.text}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <CardHeader className="pb-4">
@@ -171,11 +173,12 @@ export function HighlightCard({ header, subheader, highlights, className }: High
 
           {/* Mobile Card */}
           <Card className="overflow-hidden shadow-lg">
-            <div className="aspect-video overflow-hidden">
-              <img
+            <div className="aspect-video overflow-hidden relative">
+              <Image
                 src={selectedHighlight.image}
                 alt={selectedHighlight.imageAlt || selectedHighlight.text}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
             <CardHeader className="pb-4">

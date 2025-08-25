@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export interface CarouselProps {
   header: string | React.ReactNode;
@@ -91,13 +92,13 @@ export function Carousel({
                   style={{ width: '280px', minWidth: '280px' }}
                 >
                   <div className="w-full flex justify-center">
-                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center">
-                        <img
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center relative">
+                        <Image
                           src={imageSrc}
                           alt={`Client logo ${index + 1}`}
-                          className="max-w-full max-h-full object-contain"
+                          fill
+                          className="object-contain"
                           loading="lazy"
-                          decoding="async"
                         />
                       </div>
                     </div>
@@ -142,13 +143,13 @@ export function Carousel({
                 className="flex-shrink-0 group relative"
                 style={{ width: '280px', minWidth: '280px' }}
               >
-                <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
-                  <img
+                <div className="aspect-square overflow-hidden rounded-lg shadow-lg relative">
+                  <Image
                     src={imageSrc}
                     alt={`Carousel image ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                     loading="lazy"
-                    decoding="async"
                   />
                 </div>
               </div>

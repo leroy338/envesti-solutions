@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "../../../../components/ui/badge";
 import { useState } from "react";
 import { Search, Star, Clock, Users, BookOpen, DollarSign } from "lucide-react";
+import Image from "next/image";
 
 export interface Course {
   id: string;
@@ -204,13 +205,14 @@ export default function CoursesPage() {
               <Card key={course.id} className="h-full flex flex-col hover:shadow-lg transition-all duration-300 group">
                 {/* Course Image */}
                 <div className="relative">
-                  <div className="aspect-video overflow-hidden rounded-t-lg">
-                    <img
-                      src={course.image}
-                      alt={course.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+                                  <div className="aspect-video overflow-hidden rounded-t-lg relative">
+                  <Image
+                    src={course.image}
+                    alt={course.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                   {course.featured && (
                     <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground">
                       Featured
