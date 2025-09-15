@@ -12,6 +12,28 @@ import { Tables } from "@/lib/supabase";
 
 type OrganizationData = Tables<'organizations'>;
 
+// Form data type with non-null values for form inputs
+type FormData = {
+  id: string;
+  name: string;
+  description: string;
+  industry: string;
+  website: string;
+  phone_number: string;
+  email: string;
+  address_line1: string;
+  address_line2: string;
+  city: string;
+  state_province: string;
+  postal_code: string;
+  country: string;
+  founded_date: string;
+  number_of_employees: number;
+  status: string;
+  created_at: string;
+  updated_at: string;
+};
+
 interface OrganizationEditFormProps {
   initialData: OrganizationData;
   onSave: (data: OrganizationData) => void;
@@ -27,25 +49,28 @@ export function OrganizationEditForm({
   isLoading = false,
   isCreateMode = false
 }: OrganizationEditFormProps) {
-  const [formData, setFormData] = useState<OrganizationData>({
+  const [formData, setFormData] = useState<FormData>({
     ...initialData,
-    description: initialData.description || "",
-    industry: initialData.industry || "",
-    website: initialData.website || "",
-    phone_number: initialData.phone_number || "",
-    email: initialData.email || "",
-    address_line1: initialData.address_line1 || "",
-    address_line2: initialData.address_line2 || "",
-    city: initialData.city || "",
-    state_province: initialData.state_province || "",
-    postal_code: initialData.postal_code || "",
-    country: initialData.country || "",
-    founded_date: initialData.founded_date || "",
-    number_of_employees: initialData.number_of_employees || 0
+    description: initialData.description ?? "",
+    industry: initialData.industry ?? "",
+    website: initialData.website ?? "",
+    phone_number: initialData.phone_number ?? "",
+    email: initialData.email ?? "",
+    address_line1: initialData.address_line1 ?? "",
+    address_line2: initialData.address_line2 ?? "",
+    city: initialData.city ?? "",
+    state_province: initialData.state_province ?? "",
+    postal_code: initialData.postal_code ?? "",
+    country: initialData.country ?? "",
+    founded_date: initialData.founded_date ?? "",
+    number_of_employees: initialData.number_of_employees ?? 0,
+    status: initialData.status ?? "",
+    created_at: initialData.created_at ?? "",
+    updated_at: initialData.updated_at ?? ""
   });
-  const [errors, setErrors] = useState<Partial<OrganizationData>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleInputChange = (field: keyof OrganizationData, value: string | number) => {
+  const handleInputChange = (field: keyof FormData, value: string | number) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -53,21 +78,22 @@ export function OrganizationEditForm({
     
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({
-        ...prev,
-        [field]: undefined
-      }));
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
     }
   };
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<OrganizationData> = {};
+    const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
       newErrors.name = "Organization name is required";
     }
 
-    if (!formData.email.trim()) {
+    if (!formData.email || !formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
@@ -77,7 +103,7 @@ export function OrganizationEditForm({
       newErrors.website = "Please enter a valid website URL (include http:// or https://)";
     }
 
-    if (formData.number_of_employees < 0) {
+    if (formData.number_of_employees !== null && formData.number_of_employees < 0) {
       newErrors.number_of_employees = "Number of employees cannot be negative";
     }
 
@@ -89,7 +115,25 @@ export function OrganizationEditForm({
     e.preventDefault();
     
     if (validateForm()) {
-      onSave(formData);
+      // Convert FormData back to OrganizationData for saving
+      const organizationData: OrganizationData = {
+        ...formData,
+        description: formData.description || null,
+        industry: formData.industry || null,
+        website: formData.website || null,
+        phone_number: formData.phone_number || null,
+        email: formData.email || null,
+        address_line1: formData.address_line1 || null,
+        address_line2: formData.address_line2 || null,
+        city: formData.city || null,
+        state_province: formData.state_province || null,
+        postal_code: formData.postal_code || null,
+        country: formData.country || null,
+        founded_date: formData.founded_date || null,
+        number_of_employees: formData.number_of_employees || null,
+        status: formData.status || null
+      };
+      onSave(organizationData);
     }
   };
 

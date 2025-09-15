@@ -8,7 +8,6 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { LogOut, User, Menu, X } from "lucide-react";
-import { useState } from "react";
 
 interface AuthHeaderProps {
   isMobileMenuOpen: boolean;

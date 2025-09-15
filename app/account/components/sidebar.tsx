@@ -19,7 +19,7 @@ import { useEffect } from "react";
 
 // Icon mapping for different folder names
 const getIconForFolder = (folderName: string) => {
-  const iconMap: Record<string, any> = {
+  const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
     dashboard: LayoutDashboard,
     organization: Building2,
     team: Users,
@@ -92,7 +92,18 @@ const getNavigationItems = () => {
   ];
   
   return folderStructure.map(folder => {
-    const item: any = {
+    const item: {
+      name: string;
+      href: string;
+      icon: React.ComponentType<{ size?: number; className?: string }>;
+      description: string;
+      subItems?: Array<{
+        name: string;
+        href: string;
+        icon: React.ComponentType<{ size?: number; className?: string }>;
+        description: string;
+      }>;
+    } = {
       name: getDisplayName(folder.name),
       href: `${basePath}/${folder.name}`,
       icon: getIconForFolder(folder.name),
@@ -150,18 +161,18 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
     }
   }, [isMobileMenuOpen, setIsMobileMenuOpen]);
 
-  const isItemActive = (item: any) => {
+  const isItemActive = (item: { href: string }) => {
     // Only highlight parent if it's the exact current page, not if a subitem is active
     return item.href === pathname;
   };
 
-  const isSubItemActive = (subItem: any) => {
+  const isSubItemActive = (subItem: { href: string }) => {
     return subItem.href === pathname;
   };
 
-  const hasActiveSubItem = (item: any) => {
+  const hasActiveSubItem = (item: { subItems?: Array<{ href: string }> }) => {
     if (!item.subItems) return false;
-    return item.subItems.some((subItem: any) => subItem.href === pathname);
+    return item.subItems.some((subItem: { href: string }) => subItem.href === pathname);
   };
 
   // Shared navigation component
@@ -206,9 +217,9 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
                 </Link>
                 
                 {/* Sub Items - Always Visible */}
-                {hasSubItems && (
+                {hasSubItems && item.subItems && (
                   <div className="ml-6 mt-1 space-y-1">
-                    {item.subItems.map((subItem: any) => {
+                    {item.subItems.map((subItem: { name: string; href: string; icon: React.ComponentType<{ size?: number; className?: string }> }) => {
                       const isSubActive = isSubItemActive(subItem);
                       const SubIcon = subItem.icon;
                       

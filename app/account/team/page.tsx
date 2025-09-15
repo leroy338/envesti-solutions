@@ -8,7 +8,6 @@ import {
   UserPlus,
   Mail,
   Phone,
-  Calendar,
   Award,
   Shield,
   Clock,

@@ -11,13 +11,10 @@ import {
   User, 
   Building2, 
   Users, 
-  Mail, 
   Phone, 
   Calendar,
   Edit,
   Shield,
-  Award,
-  Clock,
   Save,
   X
 } from "lucide-react";
@@ -36,7 +33,7 @@ interface UserProfile {
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [noProfile, setNoProfile] = useState(false);
@@ -391,16 +388,6 @@ export default function ProfilePage() {
     });
   };
 
-  const formatDateTime = (dateString: string | null) => {
-    if (!dateString) return "Never";
-    return new Date(dateString).toLocaleString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
 
   const getRoleBadgeColor = (roleName: string) => {
     switch (roleName) {

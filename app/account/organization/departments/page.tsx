@@ -1,10 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { useState, useEffect, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { 
   Building2, 
@@ -37,7 +35,7 @@ export default function DepartmentsPage() {
   const [filteredDepartments, setFilteredDepartments] = useState<Department[]>([]);
 
   // Mock data for now - replace with actual Supabase query
-  const mockDepartments: Department[] = [
+  const mockDepartments: Department[] = useMemo(() => [
     {
       id: "1",
       name: "Human Resources",
@@ -98,7 +96,7 @@ export default function DepartmentsPage() {
       created_at: "2024-01-20T13:00:00Z",
       updated_at: "2024-01-28T11:30:00Z"
     }
-  ];
+  ], []);
 
   useEffect(() => {
     // Simulate loading
@@ -112,7 +110,7 @@ export default function DepartmentsPage() {
     };
 
     loadDepartments();
-  }, []);
+  }, [mockDepartments]);
 
   useEffect(() => {
     const filtered = departments.filter(dept =>
@@ -146,7 +144,7 @@ export default function DepartmentsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Departments</h1>
-            <p className="text-muted-foreground">Manage your organization's departments</p>
+            <p className="text-muted-foreground">Manage your organization&apos;s departments</p>
           </div>
         </div>
         
@@ -177,7 +175,7 @@ export default function DepartmentsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Departments</h1>
-          <p className="text-muted-foreground">Manage your organization's departments</p>
+            <p className="text-muted-foreground">Manage your organization&apos;s departments</p>
         </div>
         
         <Button className="w-full sm:w-auto">

@@ -3,7 +3,6 @@
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { AuthHeader } from "./components/auth-header";
 import { Sidebar } from "./components/sidebar";
-import Link from "next/link";
 import { useState, useCallback } from "react";
 
 export default function ProtectedLayout({
